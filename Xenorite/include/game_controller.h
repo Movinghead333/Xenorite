@@ -16,6 +16,10 @@ public:
 private:
 	// stores the current tick value 0 - 59
 	int current_tick = 0;
+
+
+
+	void load_textures();
 };
 
 #endif

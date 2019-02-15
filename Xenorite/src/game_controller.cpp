@@ -22,3 +22,11 @@ int GameController::get_current_tick() const
 {
 	return current_tick;
 }
+
+void GameController::load_textures()
+{
+	// base texture path
+	std::string base_path = "images\\";
+
+	// maps 
+}

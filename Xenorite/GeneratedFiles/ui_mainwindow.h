@@ -15,6 +15,7 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QStatusBar>
@@ -30,6 +31,7 @@ public:
     QWidget *centralWidget;
     QGridLayout *gridLayout;
     RenderWidget *render_widget;
+    QLabel *label;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -38,7 +40,8 @@ public:
     {
         if (MainWindowClass->objectName().isEmpty())
             MainWindowClass->setObjectName(QStringLiteral("MainWindowClass"));
-        MainWindowClass->resize(600, 400);
+        MainWindowClass->resize(800, 600);
+        MainWindowClass->setStyleSheet(QStringLiteral("background-color: rgb(0,0,0)"));
         centralWidget = new QWidget(MainWindowClass);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         gridLayout = new QGridLayout(centralWidget);
@@ -52,13 +55,19 @@ public:
         sizePolicy.setVerticalStretch(1);
         sizePolicy.setHeightForWidth(render_widget->sizePolicy().hasHeightForWidth());
         render_widget->setSizePolicy(sizePolicy);
+        render_widget->setStyleSheet(QLatin1String("background-color: rgb(0,0,0);\n"
+"color: #000000"));
+        label = new QLabel(render_widget);
+        label->setObjectName(QStringLiteral("label"));
+        label->setGeometry(QRect(390, 260, 47, 13));
+        label->setStyleSheet(QStringLiteral("color:#ffffff"));
 
         gridLayout->addWidget(render_widget, 0, 0, 1, 1);
 
         MainWindowClass->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindowClass);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 600, 21));
+        menuBar->setGeometry(QRect(0, 0, 800, 21));
         MainWindowClass->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindowClass);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -75,6 +84,7 @@ public:
     void retranslateUi(QMainWindow *MainWindowClass)
     {
         MainWindowClass->setWindowTitle(QApplication::translate("MainWindowClass", "MainWindow", Q_NULLPTR));
+        label->setText(QApplication::translate("MainWindowClass", "TextLabel", Q_NULLPTR));
     } // retranslateUi
 
 };
