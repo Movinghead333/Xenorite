@@ -89,14 +89,14 @@
     <ClInclude Include="include\type_definitions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\items.h">
-      <Filter>Header Files\enums</Filter>
-    </ClInclude>
     <ClInclude Include="include\tile_type.h">
       <Filter>Header Files\enums</Filter>
     </ClInclude>
     <ClInclude Include="include\world.h">
       <Filter>Header Files\world</Filter>
+    </ClInclude>
+    <ClInclude Include="include\item_type.h">
+      <Filter>Header Files\enums</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

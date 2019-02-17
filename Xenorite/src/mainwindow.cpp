@@ -8,7 +8,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 	setWindowTitle("Xenorite");
 
-	timer = new QTimer();
+	
 
 	try {
 		m_game_controller = std::make_shared<GameController>(GameController());
@@ -18,8 +18,12 @@ MainWindow::MainWindow(QWidget *parent)
 		std::cerr << e.m_error_message << std::endl;
 	}
 
+	ui.render_widget->set_game_controller(m_game_controller);
+
 	// pass game_controller to render
 	ui.render_widget->set_game_controller(m_game_controller);
+
+	timer = new QTimer();
 
 	// connect the timer for automatic mode
 	connect(timer, SIGNAL(timeout()),

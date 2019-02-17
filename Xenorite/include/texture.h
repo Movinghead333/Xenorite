@@ -1,9 +1,10 @@
-#ifndef __TEXTURE_H_DEFINED__
-#define __TEXTURE_H_DEFINED__
+#pragma once
 
 #include <vector>
 #include <iostream> // debug
 #include <string>
+
+#include <qimage.h>
 
 #include "type_definitions.h"
 
@@ -17,7 +18,7 @@ public:
 	Texture(int p_width, int p_height, const std::vector<ubyte>& p_image_data);
 
 	// load Texture from filename
-	static const Texture load_texture(const std::string& p_filename);
+	static const QImage load_texture(const std::string& p_filename);
 
 	// write a texture to a tga file in local directory
 	static void write_texture_to_file(
@@ -39,5 +40,3 @@ private:
 	// stores every pixel from the input image in an ARGB Pixelobject
 	const std::vector<ubyte> m_image_data;
 };
-
-#endif 

@@ -131,7 +131,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\game_controller.h" />
-    <ClInclude Include="include\items.h" />
+    <ClInclude Include="include\item_type.h" />
     <ClInclude Include="include\texture.h" />
     <ClInclude Include="include\tile_type.h" />
     <ClInclude Include="include\type_definitions.h" />

@@ -22,7 +22,7 @@ Texture::Texture(
 }
 
 // loads an image into a Texture object from given filename
-const Texture Texture::load_texture(const std::string& p_filename)
+const QImage Texture::load_texture(const std::string& p_filename)
 {
 	std::cout << "Loading tga-file: " << p_filename << std::endl;
 
@@ -106,7 +106,13 @@ const Texture Texture::load_texture(const std::string& p_filename)
 	input_file.close();
 
 	// return texture object
-	return Texture(temp_image_width, temp_image_height, temp_image_data);
+	return QImage(
+		&temp_image_data[0],
+		temp_image_width,
+		temp_image_height,
+		QImage::Format_ARGB32)
+		.mirrored(false, true)
+		.copy(); // TODO: cut copy if possible
 }
 
 // writes a given texture object back to tga-file on hdd

@@ -1,7 +1,6 @@
-#ifndef __ITEMS_H__
-#define __ITEMS_H__
+#pragma once
 
-enum Items
+enum ItemType
 {
 	XENORITE_ORE = 0,
 	XENORITE_BAR = 1,
@@ -17,7 +16,4 @@ enum Items
 	CIRCUT = 11,
 	RESEARCH_INGREDIENTS = 12,
 	RESEARCH_CENTER = 13,
-}
-
-#endif
-
+};

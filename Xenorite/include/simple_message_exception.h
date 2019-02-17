@@ -1,6 +1,4 @@
-#ifndef __SIMPLE_MESSAGE_EXCEPTION__
-#define __SIMPLE_MESSAGE_EXCEPTION__
-
+#pragma once
 #include <exception>
 #include <string>
 
@@ -17,5 +15,3 @@ public:
 		m_error_message(p_message)
 	{}
 };
-
-#endif

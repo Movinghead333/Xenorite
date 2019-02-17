@@ -19,4 +19,9 @@ void RenderWidget::paintEvent(QPaintEvent * event)
 {
 	//std::cout << "drawing frame for tick: ";
 	//std::cout << m_game_controller_ref->get_current_tick() << std::endl;
+
+	QPainter painter(this);
+
+	painter.drawImage(QPoint(0, 0), m_game_controller_ref->get_tile_sprite(
+		TileType::G_ROCK));
 }

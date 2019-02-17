@@ -17,9 +17,6 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
-#include <QtWidgets/QMenuBar>
-#include <QtWidgets/QStatusBar>
-#include <QtWidgets/QToolBar>
 #include <QtWidgets/QWidget>
 #include <render_widget.h>
 
@@ -32,9 +29,6 @@ public:
     QGridLayout *gridLayout;
     RenderWidget *render_widget;
     QLabel *label;
-    QMenuBar *menuBar;
-    QToolBar *mainToolBar;
-    QStatusBar *statusBar;
 
     void setupUi(QMainWindow *MainWindowClass)
     {
@@ -45,9 +39,10 @@ public:
         centralWidget = new QWidget(MainWindowClass);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         gridLayout = new QGridLayout(centralWidget);
-        gridLayout->setSpacing(6);
+        gridLayout->setSpacing(0);
         gridLayout->setContentsMargins(11, 11, 11, 11);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
+        gridLayout->setContentsMargins(0, 0, 0, 0);
         render_widget = new RenderWidget(centralWidget);
         render_widget->setObjectName(QStringLiteral("render_widget"));
         QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -65,16 +60,6 @@ public:
         gridLayout->addWidget(render_widget, 0, 0, 1, 1);
 
         MainWindowClass->setCentralWidget(centralWidget);
-        menuBar = new QMenuBar(MainWindowClass);
-        menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 800, 21));
-        MainWindowClass->setMenuBar(menuBar);
-        mainToolBar = new QToolBar(MainWindowClass);
-        mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
-        MainWindowClass->addToolBar(Qt::TopToolBarArea, mainToolBar);
-        statusBar = new QStatusBar(MainWindowClass);
-        statusBar->setObjectName(QStringLiteral("statusBar"));
-        MainWindowClass->setStatusBar(statusBar);
 
         retranslateUi(MainWindowClass);
 

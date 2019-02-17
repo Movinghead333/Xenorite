@@ -1,5 +1,4 @@
-#ifndef __TILE_TYPE_H__
-#define __TILE_TYPE_H__
+#pragma once
 
 enum TileType
 {
@@ -14,5 +13,3 @@ enum TileType
 	G_RESEARCH_CENTER
 
 };
-
-#endif
