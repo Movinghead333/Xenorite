@@ -37,6 +37,9 @@
     <Filter Include="Source Files\world">
       <UniqueIdentifier>{620872db-3e4d-45a1-bcf9-33c4b033dce7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\tiles">
+      <UniqueIdentifier>{5a7ff2be-e76c-4fc5-a7a4-08601604188d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="mainwindow.ui">
@@ -75,6 +78,12 @@
     <ClCompile Include="src\world.cpp">
       <Filter>Source Files\world</Filter>
     </ClCompile>
+    <ClCompile Include="include\basic_tile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utility.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\game_controller.h">
@@ -97,6 +106,12 @@
     </ClInclude>
     <ClInclude Include="include\item_type.h">
       <Filter>Header Files\enums</Filter>
+    </ClInclude>
+    <ClInclude Include="include\basic_tile.h">
+      <Filter>Header Files\tiles</Filter>
+    </ClInclude>
+    <ClInclude Include="include\utility.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

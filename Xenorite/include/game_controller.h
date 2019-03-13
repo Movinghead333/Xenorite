@@ -9,6 +9,7 @@
 #include "texture.h"
 #include "item_type.h"
 #include "tile_type.h"
+#include "world.h"
 
 class GameController
 {
@@ -24,6 +25,9 @@ public:
 private:
 	// stores the current tick value 0 - 59
 	int current_tick = 0;
+
+	// current world object
+	std::unique_ptr<World> current_world;
 
 	// map storing all tile graphics with there matching enum type as key
 	std::map<TileType, std::shared_ptr<QImage>> tile_sprites;

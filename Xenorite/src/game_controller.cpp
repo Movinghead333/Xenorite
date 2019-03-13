@@ -6,6 +6,9 @@ GameController::GameController()
 
 	std::cout << "Loading Images!" << std::endl;
 	load_textures();
+
+	std::cout << "Loading test map" << std::endl;
+	current_world = World::load_world("saves\\test.txt");
 }
 
 void GameController::update()

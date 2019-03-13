@@ -122,19 +122,23 @@
     <QtMoc Include="include\mainwindow.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="include\basic_tile.cpp" />
     <ClCompile Include="src\game_controller.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\mainwindow.cpp" />
     <ClCompile Include="src\render_widget.cpp" />
     <ClCompile Include="src\texture.cpp" />
+    <ClCompile Include="src\utility.cpp" />
     <ClCompile Include="src\world.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\basic_tile.h" />
     <ClInclude Include="include\game_controller.h" />
     <ClInclude Include="include\item_type.h" />
     <ClInclude Include="include\texture.h" />
     <ClInclude Include="include\tile_type.h" />
     <ClInclude Include="include\type_definitions.h" />
+    <ClInclude Include="include\utility.h" />
     <ClInclude Include="include\world.h" />
     <QtMoc Include="include\render_widget.h">
       <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\include;.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets</IncludePath>
