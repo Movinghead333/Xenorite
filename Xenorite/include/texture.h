@@ -20,6 +20,9 @@ public:
 	// load Texture from filename
 	static const QImage load_texture(const std::string& p_filename);
 
+	// load Texture from png file
+	static const QImage load_png(const std::string& p_filename);
+
 	// write a texture to a tga file in local directory
 	static void write_texture_to_file(
 		const std::string& filename,

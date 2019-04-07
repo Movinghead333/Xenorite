@@ -23,5 +23,5 @@ void RenderWidget::paintEvent(QPaintEvent * event)
 	QPainter painter(this);
 
 	painter.drawImage(QPoint(0, 0), m_game_controller_ref->get_tile_sprite(
-		TileType::G_ROCK));
+		TileType::G_BASIC));
 }

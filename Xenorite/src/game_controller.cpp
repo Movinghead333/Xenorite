@@ -46,15 +46,32 @@ void GameController::load_textures()
 	std::map<TileType, std::string> tile_res_map;
 
 	tile_res_map.insert(std::make_pair<TileType, std::string>(
-		TileType::G_ROCK, "rock.tga"
+		TileType::G_BASIC, "basic_ground.png"
+		));
+	
+	tile_res_map.insert(std::make_pair<TileType, std::string>(
+		TileType::G_XENORITE_ORE, "xenorite_ore.png"
 		));
 
+	tile_res_map.insert(std::make_pair<TileType, std::string>(
+		TileType::G_KRONOMITE_ORE, "kronomite_ore.png"
+		));
+
+	tile_res_map.insert(std::make_pair<TileType, std::string>(
+		TileType::G_RAW_CRYSTALITE, "raw_crystalite.png"
+		));
+
+	tile_res_map.insert(std::make_pair<TileType, std::string>(
+		TileType::G_ROCK, "rock.png"
+		));
+	
+	// initialize tile sprites
 	for (const std::pair<TileType, std::string>& pair : tile_res_map)
 	{
 		tile_sprites.insert(std::pair<TileType, std::shared_ptr<QImage>>(
 			pair.first,
 			std::make_shared<QImage>(
-				Texture::load_texture(tiles_path + pair.second))
+				Texture::load_png(tiles_path + pair.second))
 			));
 	}
 }

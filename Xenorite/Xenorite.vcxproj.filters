@@ -78,10 +78,10 @@
     <ClCompile Include="src\world.cpp">
       <Filter>Source Files\world</Filter>
     </ClCompile>
-    <ClCompile Include="include\basic_tile.cpp">
+    <ClCompile Include="src\utility.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\utility.cpp">
+    <ClCompile Include="src\basic_tile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

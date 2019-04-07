@@ -115,6 +115,14 @@ const QImage Texture::load_texture(const std::string& p_filename)
 		.copy(); // TODO: cut copy if possible
 }
 
+const QImage Texture::load_png(const std::string& p_filename)
+{
+	std::cout << "Loading image from path: " << p_filename << std::endl;
+	QImage temp_image;
+	temp_image.load(QString::fromStdString(p_filename));
+	return temp_image;
+}
+
 // writes a given texture object back to tga-file on hdd
 void Texture::write_texture_to_file(
 	const std::string& p_filename,
