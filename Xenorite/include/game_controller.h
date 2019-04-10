@@ -22,9 +22,27 @@ public:
 
 	QImage& get_tile_sprite(TileType p_tile_type) const;
 
+	QImage& get_player_sprite() const;
+
+	int get_window_width() const;
+	int get_window_height() const;
+
+	void set_window_width(int new_width);
+	void set_window_height(int new_height);
+
+	// return true if there is a world loaded into memory
+	bool world_is_loaded() const;
+
 private:
+	// PRIVATE MEMBERS
+
 	// stores the current tick value 0 - 59
 	int current_tick = 0;
+
+	// width in pixels of the mainwindow render area
+	int screen_width;
+	// height in pixels of the mainwindow render area
+	int screen_height;
 
 	// current world object
 	std::unique_ptr<World> current_world;
@@ -35,5 +53,9 @@ private:
 	// map storing all item graphics with there matching enum type as key
 	std::map<ItemType, std::shared_ptr<QImage>> item_sprites;
 
+	// player sprite
+	std::shared_ptr<QImage> player_sprite;
+
+	// PRIVATE METHODS
 	void load_textures();
 };

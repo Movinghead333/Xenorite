@@ -20,4 +20,6 @@ private:
 	std::shared_ptr<GameController> m_game_controller_ref;
 
 	void paintEvent(QPaintEvent *event) override;
+
+	
 };
