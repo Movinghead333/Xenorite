@@ -82,3 +82,8 @@ std::unique_ptr<World> World::load_world(const std::string & p_file_path)
 
 	return std::make_unique<World>(World(width, height, temp_tiles));
 }
+
+BasicTile& World::get_tile(int x, int y)
+{
+	return tiles[y * width + x];
+}

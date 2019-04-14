@@ -17,6 +17,8 @@ public:
 
 	static std::unique_ptr<World> load_world(const std::string& p_file_path);
 
+	BasicTile& get_tile(int x, int y);
+
 private:
 	// width and height in tiles
 	int width;
