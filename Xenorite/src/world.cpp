@@ -91,3 +91,13 @@ BasicTile& World::get_tile(int x, int y)
 {
 	return *tiles[y * width + x];
 }
+
+int World::get_width()
+{
+	return width;
+}
+
+int World::get_height()
+{
+	return height;
+}

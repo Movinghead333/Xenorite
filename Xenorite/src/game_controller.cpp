@@ -39,6 +39,16 @@ QImage& GameController::get_player_sprite() const
 	return *player_sprite;
 }
 
+Player & GameController::get_player()
+{
+	return player;
+}
+
+World & GameController::get_world()
+{
+	return *current_world;
+}
+
 int GameController::get_window_width() const
 {
 	return screen_width;

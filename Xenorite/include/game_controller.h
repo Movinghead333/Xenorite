@@ -10,6 +10,7 @@
 #include "item_type.h"
 #include "tile_type.h"
 #include "world.h"
+#include "player.h"
 
 class GameController
 {
@@ -23,6 +24,10 @@ public:
 	QImage& get_tile_sprite(TileType p_tile_type) const;
 
 	QImage& get_player_sprite() const;
+
+	Player& get_player();
+
+	World& get_world();
 
 	int get_window_width() const;
 	int get_window_height() const;
@@ -43,6 +48,9 @@ private:
 	int screen_width;
 	// height in pixels of the mainwindow render area
 	int screen_height;
+
+	// player object
+	Player player;
 
 	// current world object
 	std::unique_ptr<World> current_world;

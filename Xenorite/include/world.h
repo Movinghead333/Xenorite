@@ -19,6 +19,9 @@ public:
 
 	BasicTile& get_tile(int x, int y);
 
+	int get_width();
+	int get_height();
+
 private:
 	// width and height in tiles
 	int width;
