@@ -6,7 +6,10 @@
 #include "simple_message_exception.h"
 #include "utility.h"
 
-World::World(int p_width, int p_height, const std::vector<BasicTile>& p_tiles)
+World::World(
+	int p_width,
+	int p_height,
+	const std::vector<std::shared_ptr<BasicTile>>& p_tiles)
 	:
 	width(p_width),
 	height(p_height),
@@ -59,7 +62,7 @@ std::unique_ptr<World> World::load_world(const std::string & p_file_path)
 	}
 
 	// temp vector for world object setup
-	std::vector<BasicTile> temp_tiles;
+	std::vector<std::shared_ptr<BasicTile>> temp_tiles;
 	temp_tiles.reserve(width * height);
 
 	// y loop reading in the lines
@@ -75,8 +78,9 @@ std::unique_ptr<World> World::load_world(const std::string & p_file_path)
 			char current_char = current_line[x_loop];
 
 			temp_tiles.push_back(
+				std::make_unique<BasicTile>(
 				BasicTile(
-					Utility::char_to_tile_type(current_char)));
+					Utility::char_to_tile_type(current_char))));
 		}
 	}
 
@@ -85,5 +89,5 @@ std::unique_ptr<World> World::load_world(const std::string & p_file_path)
 
 BasicTile& World::get_tile(int x, int y)
 {
-	return tiles[y * width + x];
+	return *tiles[y * width + x];
 }

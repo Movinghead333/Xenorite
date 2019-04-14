@@ -15,7 +15,6 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHeaderView>
-#include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QWidget>
 #include <render_widget.h>
@@ -28,7 +27,6 @@ public:
     QWidget *centralWidget;
     QGridLayout *gridLayout;
     RenderWidget *render_widget;
-    QLabel *label;
 
     void setupUi(QMainWindow *MainWindowClass)
     {
@@ -52,10 +50,6 @@ public:
         render_widget->setSizePolicy(sizePolicy);
         render_widget->setStyleSheet(QLatin1String("background-color: rgb(0,0,0);\n"
 "color: #000000"));
-        label = new QLabel(render_widget);
-        label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(390, 260, 47, 13));
-        label->setStyleSheet(QStringLiteral("color:#ffffff"));
 
         gridLayout->addWidget(render_widget, 0, 0, 1, 1);
 
@@ -69,7 +63,6 @@ public:
     void retranslateUi(QMainWindow *MainWindowClass)
     {
         MainWindowClass->setWindowTitle(QApplication::translate("MainWindowClass", "MainWindow", Q_NULLPTR));
-        label->setText(QApplication::translate("MainWindowClass", "TextLabel", Q_NULLPTR));
     } // retranslateUi
 
 };

@@ -13,7 +13,7 @@ public:
 	World(
 		int p_width,
 		int p_height,
-		const std::vector<BasicTile>& p_tiles);
+		const std::vector<std::shared_ptr<BasicTile>>& p_tiles);
 
 	static std::unique_ptr<World> load_world(const std::string& p_file_path);
 
@@ -25,5 +25,5 @@ private:
 	int height;
 
 	// vector storing all tile object for later polymorphic use
-	std::vector<BasicTile> tiles;
+	std::vector<std::shared_ptr<BasicTile>> tiles;
 };
