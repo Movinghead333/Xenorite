@@ -13,7 +13,8 @@ World::World(
 	:
 	width(p_width),
 	height(p_height),
-	tiles(p_tiles)
+	tiles(p_tiles),
+	m_player(Player(2,2, p_width, p_height))
 {
 }
 

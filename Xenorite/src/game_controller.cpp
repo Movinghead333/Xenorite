@@ -13,6 +13,8 @@ GameController::GameController()
 
 void GameController::update()
 {
+	//for (auto p : keys)
+	//	std::cout << p.first << " " << p.second << std::endl;
 	if (current_tick <= 58)
 	{
 		current_tick++;
@@ -21,6 +23,23 @@ void GameController::update()
 	{
 		current_tick = 0;
 		std::cout << " 60 Updates!" << current_tick << std::endl;
+	}
+
+	if (keys[Qt::Key_W])
+	{
+		current_world->m_player.update(PlayerDirection::UP);
+	}
+	else if (keys[Qt::Key_D])
+	{
+		current_world->m_player.update(PlayerDirection::RIGHT);
+	}
+	else if (keys[Qt::Key_S])
+	{
+		current_world->m_player.update(PlayerDirection::DOWN);
+	}
+	else if (keys[Qt::Key_A])
+	{
+		current_world->m_player.update(PlayerDirection::LEFT);
 	}
 }
 
@@ -34,14 +53,9 @@ QImage& GameController::get_tile_sprite(TileType p_tile_type) const
 	return *(tile_sprites.find(p_tile_type)->second);
 }
 
-QImage& GameController::get_player_sprite() const
+QImage& GameController::get_player_sprite(PlayerDirection dir) const
 {
-	return *player_sprite;
-}
-
-Player & GameController::get_player()
-{
-	return player;
+	return *(player_sprites.find(dir))->second;
 }
 
 World & GameController::get_world()
@@ -72,6 +86,16 @@ void GameController::set_window_height(int new_height)
 bool GameController::world_is_loaded() const
 {
 	return current_world != nullptr;
+}
+
+void GameController::update_key_press(int key_code)
+{
+	keys[key_code] = true;
+}
+
+void GameController::update_key_release(int key_code)
+{
+	keys[key_code] = false;
 }
 
 void GameController::load_textures()
@@ -115,6 +139,35 @@ void GameController::load_textures()
 			));
 	}
 
-	player_sprite = std::make_shared<QImage>(Texture::load_png(
-		"images\\player\\player.png"));
+	// player images path
+	std::string player_path = base_path + "player\\";
+
+	// map storing filepaths associated with enum objects
+	std::map<PlayerDirection, std::string> player_res_map;
+
+	player_res_map.insert(std::make_pair<PlayerDirection, std::string>(
+		PlayerDirection::UP, "player_up.png"
+		));
+
+	player_res_map.insert(std::make_pair<PlayerDirection, std::string>(
+		PlayerDirection::RIGHT, "player_right.png"
+		));
+
+	player_res_map.insert(std::make_pair<PlayerDirection, std::string>(
+		PlayerDirection::DOWN, "player_down.png"
+		));
+
+	player_res_map.insert(std::make_pair<PlayerDirection, std::string>(
+		PlayerDirection::LEFT, "player_left.png"
+		));
+
+	// initialize player sprites
+	for (const std::pair<PlayerDirection, std::string>& pair : player_res_map)
+	{
+		player_sprites.insert(std::pair<PlayerDirection, std::shared_ptr<QImage>>(
+			pair.first,
+			std::make_shared<QImage>(
+				Texture::load_png(player_path + pair.second))
+			));
+	}
 }

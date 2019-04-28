@@ -3,16 +3,34 @@
 #include <iostream>
 
 #include <qpainter>
+#include <qkeyevent>
 
 RenderWidget::RenderWidget(QWidget *parent)
 	: QWidget(parent)
 {
+	setFocusPolicy(Qt::StrongFocus);
 }
 
 void RenderWidget::set_game_controller(
 	std::shared_ptr<GameController> p_game_controller)
 {
 	m_game_controller_ref = p_game_controller;
+}
+
+void RenderWidget::keyPressEvent(QKeyEvent *e)
+{
+	// skip if the controller is not there yet
+	if (!m_game_controller_ref) return;
+	m_game_controller_ref->update_key_press(e->key());
+	//QWidget::keyPressEvent(e);
+}
+
+void RenderWidget::keyReleaseEvent(QKeyEvent * e)
+{
+	// skip if the controller is not there yet
+	if (!m_game_controller_ref) return;
+	m_game_controller_ref->update_key_release(e->key());
+	//QWidget::keyPressEvent(e);
 }
 
 void RenderWidget::paintEvent(QPaintEvent * event)
@@ -29,30 +47,33 @@ void RenderWidget::paintEvent(QPaintEvent * event)
 	
 	World& world = m_game_controller_ref->get_world();
 
+	// get max map dimensions for draw-area checks
 	int max_x_tiles = world.get_width();
 	int max_y_tiles = world.get_height();
 
+	// amount of tiles which get rendered along x and y axis
 	int x_tiles = (screen_width / 32) + 2;
 	int y_tiles = (screen_height / 32) + 2;
 
+	// player x and y coordinate in pixels
 	QPoint player_pos = QPoint(((screen_width / 2) - (sprite_dim / 2)),
 							   ((screen_height / 2) - (sprite_dim / 2)));
 
 	QPoint tile_offset = QPoint((-x_tiles / 2), (-y_tiles / 2));
 
+	// point from where the render loops start drawing the tiles
 	QPoint render_origin = QPoint((player_pos.x() + (sprite_dim * tile_offset.x())),
 								  (player_pos.y() + (sprite_dim * tile_offset.y())));
 
-	QPoint player_tile = m_game_controller_ref->get_player().tile_position;
+	// get the player's tile-position
+	QPoint player_tile = world.m_player.tile_position;
 
 	//std::cout << x_tiles / 2 << " " << std::endl;
 	
 
 	QPainter painter(this);
 
-	painter.drawImage(QPoint(0, 0), m_game_controller_ref->get_tile_sprite(
-		TileType::G_BASIC));
-
+	// the x and y coordinates of the first tile in tile-coordinates
 	QPoint tile_origin = player_tile + tile_offset;
 
 	//std::cout << tile_origin.x() << " "  << tile_origin.y() << std::endl;
@@ -63,8 +84,8 @@ void RenderWidget::paintEvent(QPaintEvent * event)
 		{
 			QPoint tile_coord = tile_origin + QPoint(x, y);
 
-			if (tile_coord.x() < 0 || tile_coord.x() > max_x_tiles ||
-				tile_coord.y() < 0 || tile_coord.y() > max_y_tiles)
+			if (tile_coord.x() < 0 || tile_coord.x() >= max_x_tiles ||
+				tile_coord.y() < 0 || tile_coord.y() >= max_y_tiles)
 				continue;
 
 			//std::cout << tile_coord.x() << " " << tile_coord.y() << std::endl;
@@ -78,6 +99,7 @@ void RenderWidget::paintEvent(QPaintEvent * event)
 	// player render layer
 	QPoint pos = QPoint(((screen_width  / 2) - (sprite_dim / 2)),
 						((screen_height / 2) - (sprite_dim / 2)));
-	painter.drawImage(player_pos, m_game_controller_ref->get_player_sprite());
+	painter.drawImage(player_pos, m_game_controller_ref->get_player_sprite(
+		world.m_player.player_dir));
 }
 

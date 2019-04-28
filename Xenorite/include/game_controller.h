@@ -23,9 +23,7 @@ public:
 
 	QImage& get_tile_sprite(TileType p_tile_type) const;
 
-	QImage& get_player_sprite() const;
-
-	Player& get_player();
+	QImage& get_player_sprite(PlayerDirection dir) const;
 
 	World& get_world();
 
@@ -38,8 +36,18 @@ public:
 	// return true if there is a world loaded into memory
 	bool world_is_loaded() const;
 
+	// called from render_Widget updating the keymap
+	void update_key_press(int key_code);
+
+	// called from render_Widget updating the keymap
+	void update_key_release(int key_code);
+
+
 private:
 	// PRIVATE MEMBERS
+
+	// Key Map
+	std::map<int, bool> keys;
 
 	// stores the current tick value 0 - 59
 	int current_tick = 0;
@@ -48,9 +56,6 @@ private:
 	int screen_width;
 	// height in pixels of the mainwindow render area
 	int screen_height;
-
-	// player object
-	Player player;
 
 	// current world object
 	std::unique_ptr<World> current_world;
@@ -62,7 +67,7 @@ private:
 	std::map<ItemType, std::shared_ptr<QImage>> item_sprites;
 
 	// player sprite
-	std::shared_ptr<QImage> player_sprite;
+	std::map<PlayerDirection, std::shared_ptr<QImage>> player_sprites;
 
 	// PRIVATE METHODS
 	void load_textures();

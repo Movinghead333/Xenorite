@@ -5,6 +5,7 @@
 #include <string>
 
 #include "basic_tile.h"
+#include "player.h"
 
 class World
 {
@@ -21,6 +22,9 @@ public:
 
 	int get_width();
 	int get_height();
+
+	// PUBLIC MEMBERS
+	Player m_player;
 
 private:
 	// width and height in tiles

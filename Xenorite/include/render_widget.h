@@ -14,6 +14,9 @@ public:
 	void set_game_controller(
 		std::shared_ptr<GameController> p_game_controller);
 
+	void keyPressEvent(QKeyEvent *e) override;
+	void keyReleaseEvent(QKeyEvent *e) override;
+
 private:
 
 	// instance of GameController
