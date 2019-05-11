@@ -5,6 +5,7 @@
 #include <string>
 
 #include "basic_tile.h"
+#include "ore_tile.h"
 #include "player.h"
 
 class World
@@ -18,7 +19,12 @@ public:
 
 	static std::unique_ptr<World> load_world(const std::string& p_file_path);
 
+	// create BasicTile-shared_ptr based on input-char
+	static std::shared_ptr<BasicTile> make_tile_from_char(char input);
+
 	BasicTile& get_tile(int x, int y);
+
+	TileType get_tiletype(int x, int y) const;
 
 	int get_width();
 	int get_height();

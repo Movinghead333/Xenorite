@@ -14,7 +14,7 @@ World::World(
 	width(p_width),
 	height(p_height),
 	tiles(p_tiles),
-	m_player(Player(2,2, p_width, p_height))
+	m_player(Player(4,4, p_width, p_height))
 {
 }
 
@@ -78,19 +78,51 @@ std::unique_ptr<World> World::load_world(const std::string & p_file_path)
 		{
 			char current_char = current_line[x_loop];
 
-			temp_tiles.push_back(
-				std::make_unique<BasicTile>(
-				BasicTile(
-					Utility::char_to_tile_type(current_char))));
+			temp_tiles.push_back(World::make_tile_from_char(current_char));
 		}
 	}
 
 	return std::make_unique<World>(World(width, height, temp_tiles));
 }
 
+std::shared_ptr<BasicTile> World::make_tile_from_char(char input)
+{
+	switch (input)
+	{
+	case 'a':
+		return std::make_shared<BasicTile>(OreTile(TileType::G_BASIC));
+		break;
+
+	case 'b':
+		return std::make_shared<OreTile>(OreTile(TileType::G_XENORITE_ORE));
+		break;
+
+	case 'c':
+		return std::make_shared<OreTile>(OreTile(TileType::G_KRONOMITE_ORE));
+		break;
+
+	case 'd':
+		return std::make_shared<OreTile>(OreTile(TileType::G_RAW_CRYSTALITE));
+		break;
+
+	case 'e':
+		return std::make_shared<OreTile>(OreTile(TileType::G_ROCK));
+		break;
+
+	default:
+		break;
+	}
+	return std::shared_ptr<BasicTile>();
+}
+
 BasicTile& World::get_tile(int x, int y)
 {
 	return *tiles[y * width + x];
+}
+
+TileType World::get_tiletype(int x, int y) const
+{
+	return tiles[y*width + x]->tile_type;
 }
 
 int World::get_width()

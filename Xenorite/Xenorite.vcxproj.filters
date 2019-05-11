@@ -1,10 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
     <Filter Include="Header Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
@@ -34,11 +30,17 @@
     <Filter Include="Header Files\world">
       <UniqueIdentifier>{2a3b9d48-a704-4c4a-a4b7-8f42298a48e7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\world">
-      <UniqueIdentifier>{620872db-3e4d-45a1-bcf9-33c4b033dce7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\tiles">
       <UniqueIdentifier>{5a7ff2be-e76c-4fc5-a7a4-08601604188d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core">
+      <UniqueIdentifier>{69395fd7-2727-4094-ad29-bb6a172445d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gui">
+      <UniqueIdentifier>{266fbe3a-f317-44f8-b2d2-28e5a6c7f91d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\util">
+      <UniqueIdentifier>{71ce5c82-6d4f-4116-9e7a-f9a9b36a3062}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -53,54 +55,45 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="include\mainwindow.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\gui</Filter>
     </QtMoc>
     <QtMoc Include="include\render_widget.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\gui</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\mainwindow.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game_controller.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\texture.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\render_widget.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\basic_tile.cpp">
+      <Filter>Header Files\tiles</Filter>
     </ClCompile>
     <ClCompile Include="src\world.cpp">
-      <Filter>Source Files\world</Filter>
+      <Filter>Header Files\world</Filter>
     </ClCompile>
-    <ClCompile Include="src\utility.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\main.cpp">
+      <Filter>Header Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\basic_tile.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\game_controller.cpp">
+      <Filter>Header Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mainwindow.cpp">
+      <Filter>Header Files\gui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\render_widget.cpp">
+      <Filter>Header Files\gui</Filter>
     </ClCompile>
     <ClCompile Include="src\player.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\texture.cpp">
+      <Filter>Header Files\util</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utility.cpp">
+      <Filter>Header Files\util</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ore_tile.cpp">
+      <Filter>Header Files\tiles</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\game_controller.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\simple_message_exception.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\texture.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\type_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\tile_type.h">
       <Filter>Header Files\enums</Filter>
     </ClInclude>
@@ -113,14 +106,29 @@
     <ClInclude Include="include\basic_tile.h">
       <Filter>Header Files\tiles</Filter>
     </ClInclude>
-    <ClInclude Include="include\utility.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\player.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\player_direction.h">
       <Filter>Header Files\enums</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ore_tile.h">
+      <Filter>Header Files\tiles</Filter>
+    </ClInclude>
+    <ClInclude Include="include\game_controller.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\player.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\utility.h">
+      <Filter>Header Files\util</Filter>
+    </ClInclude>
+    <ClInclude Include="include\simple_message_exception.h">
+      <Filter>Header Files\util</Filter>
+    </ClInclude>
+    <ClInclude Include="include\texture.h">
+      <Filter>Header Files\util</Filter>
+    </ClInclude>
+    <ClInclude Include="include\type_definitions.h">
+      <Filter>Header Files\util</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

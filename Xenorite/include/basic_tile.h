@@ -12,7 +12,6 @@ public:
 	// virtual destructor for later polymorphic use
 	virtual ~BasicTile();
 
-private:
 	// Tiles' TileType
 	TileType tile_type;
 };

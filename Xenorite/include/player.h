@@ -8,14 +8,14 @@ class Player
 public:
 	Player(int x_tile, int y_tile, int p_max_x_tiles, int p_max_y_tiles);
 
-	QPoint tile_position;
-	QPoint map_boundries;
-
 	PlayerDirection player_dir = PlayerDirection::UP;
 
 	int move_ticks = 0;
 
 	void update(PlayerDirection new_dir);
+
+	QPoint tile_position;
+	QPoint map_boundries;
 
 
 private:

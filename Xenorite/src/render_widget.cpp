@@ -92,7 +92,8 @@ void RenderWidget::paintEvent(QPaintEvent * event)
 			QPoint pos = render_origin;
 			pos += QPoint(x * sprite_dim, y * sprite_dim);
 			painter.drawImage(pos,
-				m_game_controller_ref->get_tile_sprite(TileType::G_ROCK));
+				m_game_controller_ref->get_tile_sprite(
+					world.get_tiletype(tile_coord.x(), tile_coord.y())));
 		}
 
 
