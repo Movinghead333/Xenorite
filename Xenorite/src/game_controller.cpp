@@ -27,19 +27,19 @@ void GameController::update()
 
 	if (keys[Qt::Key_W])
 	{
-		current_world->m_player.update(PlayerDirection::UP);
+		current_world->m_player.update(PlayerDirection::UP, *current_world);
 	}
 	else if (keys[Qt::Key_D])
 	{
-		current_world->m_player.update(PlayerDirection::RIGHT);
+		current_world->m_player.update(PlayerDirection::RIGHT, *current_world);
 	}
 	else if (keys[Qt::Key_S])
 	{
-		current_world->m_player.update(PlayerDirection::DOWN);
+		current_world->m_player.update(PlayerDirection::DOWN, *current_world);
 	}
 	else if (keys[Qt::Key_A])
 	{
-		current_world->m_player.update(PlayerDirection::LEFT);
+		current_world->m_player.update(PlayerDirection::LEFT, *current_world);
 	}
 }
 

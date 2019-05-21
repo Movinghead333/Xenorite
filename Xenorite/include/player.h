@@ -3,6 +3,8 @@
 #include "qpoint.h"
 #include "player_direction.h"
 
+class World;
+
 class Player
 {
 public:
@@ -12,7 +14,8 @@ public:
 
 	int move_ticks = 0;
 
-	void update(PlayerDirection new_dir);
+	void update(PlayerDirection new_dir,
+				World& world);
 
 	QPoint tile_position;
 	QPoint map_boundries;

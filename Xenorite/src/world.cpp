@@ -90,7 +90,7 @@ std::shared_ptr<BasicTile> World::make_tile_from_char(char input)
 	switch (input)
 	{
 	case 'a':
-		return std::make_shared<BasicTile>(OreTile(TileType::G_BASIC));
+		return std::make_shared<BasicTile>(BasicTile(TileType::G_BASIC, false));
 		break;
 
 	case 'b':

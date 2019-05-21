@@ -1,5 +1,8 @@
 #include "player.h"
+
 #include <iostream>
+
+#include "world.h"
 
 Player::Player(int x_tile, int y_tile, int p_max_x_tiles, int p_max_y_tiles)
 	:
@@ -8,7 +11,8 @@ Player::Player(int x_tile, int y_tile, int p_max_x_tiles, int p_max_y_tiles)
 {
 }
 
-void Player::update(PlayerDirection new_dir)
+void Player::update(PlayerDirection new_dir,
+					World& world)
 {
 	if (new_dir == player_dir)
 	{
@@ -20,24 +24,50 @@ void Player::update(PlayerDirection new_dir)
 		{
 			if (walking_cooldown == 0)
 			{
+				int target_x = tile_position.x();
+				int target_y = tile_position.y();
 				// walk
 				switch (player_dir)
 				{
 				case UP:
-					if (tile_position.y() != 0)
-						tile_position.setY(tile_position.y() - 1);
+					target_y--;
+					if (target_y >= 0)
+					{
+						if (!world.get_tile(target_x, target_y).collision)
+						{
+							tile_position.setY(target_y);
+						}
+					}
 					break;
 				case RIGHT:
-					if ((tile_position.x() + 1) != map_boundries.x())
-						tile_position.setX(tile_position.x() + 1);
+					target_x++;
+					if (target_x < map_boundries.x())
+					{
+						if (!world.get_tile(target_x, target_y).collision)
+						{
+							tile_position.setX(target_x);
+						}
+					}
 					break;
 				case DOWN:
-					if ((tile_position.y() + 1) != map_boundries.y())
-						tile_position.setY(tile_position.y() + 1);
+					target_y++;
+					if (target_y < map_boundries.y())
+					{
+						if (!world.get_tile(target_x, target_y).collision)
+						{
+							tile_position.setY(target_y);
+						}
+					}
 					break;
 				case LEFT:
-					if (tile_position.x() != 0)
-						tile_position.setX(tile_position.x() - 1);
+					target_x--;
+					if (target_x >= 0)
+					{
+						if (!world.get_tile(target_x, target_y).collision)
+						{
+							tile_position.setX(target_x);
+						}
+					}
 					break;
 				default:
 					break;
