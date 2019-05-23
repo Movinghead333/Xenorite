@@ -124,6 +124,8 @@
   <ItemGroup>
     <ClCompile Include="src\basic_tile.cpp" />
     <ClCompile Include="src\game_controller.cpp" />
+    <ClCompile Include="src\inventory.cpp" />
+    <ClCompile Include="src\item_stack.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\mainwindow.cpp" />
     <ClCompile Include="src\ore_tile.cpp" />
@@ -136,6 +138,8 @@
   <ItemGroup>
     <ClInclude Include="include\basic_tile.h" />
     <ClInclude Include="include\game_controller.h" />
+    <ClInclude Include="include\inventory.h" />
+    <ClInclude Include="include\item_stack.h" />
     <ClInclude Include="include\item_type.h" />
     <ClInclude Include="include\ore_tile.h" />
     <ClInclude Include="include\player.h" />

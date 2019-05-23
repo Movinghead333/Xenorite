@@ -9,6 +9,11 @@ Player::Player(int x_tile, int y_tile, int p_max_x_tiles, int p_max_y_tiles)
 	tile_position(QPoint(x_tile, y_tile)),
 	map_boundries(QPoint(p_max_x_tiles, p_max_y_tiles))
 {
+	inventory.add_item(ItemStack(ItemType::ROCK, 5));
+	inventory.add_item(ItemStack(ItemType::KRONOMITE_ORE, 10));
+	inventory.add_item(ItemStack(ItemType::XENORITE_ORE, 20));
+
+	std::cout << inventory.to_string() << std::endl;
 }
 
 void Player::update(PlayerDirection new_dir,

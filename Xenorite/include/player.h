@@ -2,6 +2,7 @@
 
 #include "qpoint.h"
 #include "player_direction.h"
+#include "inventory.h"
 
 class World;
 
@@ -19,6 +20,8 @@ public:
 
 	QPoint tile_position;
 	QPoint map_boundries;
+
+	Inventory inventory;
 
 
 private:

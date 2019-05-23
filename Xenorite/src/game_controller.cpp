@@ -22,7 +22,7 @@ void GameController::update()
 	else
 	{
 		current_tick = 0;
-		std::cout << " 60 Updates!" << current_tick << std::endl;
+		std::cout << " 60 Updates!" << std::endl;
 	}
 
 	if (keys[Qt::Key_W])

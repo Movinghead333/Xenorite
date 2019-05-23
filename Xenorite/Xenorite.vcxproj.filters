@@ -92,6 +92,12 @@
     <ClCompile Include="src\ore_tile.cpp">
       <Filter>Header Files\tiles</Filter>
     </ClCompile>
+    <ClCompile Include="src\item_stack.cpp">
+      <Filter>Header Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\inventory.cpp">
+      <Filter>Header Files\core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\tile_type.h">
@@ -129,6 +135,12 @@
     </ClInclude>
     <ClInclude Include="include\type_definitions.h">
       <Filter>Header Files\util</Filter>
+    </ClInclude>
+    <ClInclude Include="include\item_stack.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\inventory.h">
+      <Filter>Header Files\core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
