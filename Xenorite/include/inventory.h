@@ -10,12 +10,18 @@ class Inventory
 public:
 	Inventory();
 
+	~Inventory();
+
 	void add_item(ItemStack p_stack);
+
+	ItemStack& get_item(int x, int y);
 
 	std::string to_string() const;
 
 private:
-	std::vector<ItemStack> items;
+	ItemStack* items;
 
-	const int MAX_INV_SIZE = 100;
+	const int ROWS = 10;
+	const int COLS = 10;
+	const int MAX_INV_SIZE = ROWS * COLS;
 };

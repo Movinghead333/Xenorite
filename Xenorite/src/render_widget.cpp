@@ -78,8 +78,11 @@ void RenderWidget::paintEvent(QPaintEvent * event)
 
 	//std::cout << tile_origin.x() << " "  << tile_origin.y() << std::endl;
 
-	// tile render
+
+
+	// tile render layer
 	for (int y = 0; y < y_tiles; y++)
+	{
 		for (int x = 0; x < x_tiles; x++)
 		{
 			QPoint tile_coord = tile_origin + QPoint(x, y);
@@ -95,6 +98,7 @@ void RenderWidget::paintEvent(QPaintEvent * event)
 				m_game_controller_ref->get_tile_sprite(
 					world.get_tiletype(tile_coord.x(), tile_coord.y())));
 		}
+	}
 
 
 	// player render layer
@@ -102,5 +106,40 @@ void RenderWidget::paintEvent(QPaintEvent * event)
 						((screen_height / 2) - (sprite_dim / 2)));
 	painter.drawImage(player_pos, m_game_controller_ref->get_player_sprite(
 		world.m_player.player_dir));
+
+
+	// GUI windows layer
+	switch (m_game_controller_ref->get_gui_state())
+	{
+	case GUI_State::INVENTORY:
+		std::cout << "showing inventory" << std::endl;
+		QPoint inv_pos = QPoint(screen_width / 2, screen_height / 2);
+		const QImage& inv_img = m_game_controller_ref->get_gui_sprite(GUI_State::INVENTORY);
+		inv_pos -= QPoint(inv_img.width() / 2, inv_img.height() / 2);
+		render_inventory(painter, inv_pos.x(), inv_pos.y());
+		break;
+	}
+
+}
+
+void RenderWidget::render_inventory(QPainter & p_painter, int p_x, int p_y)
+{
+	QPoint offset = QPoint(4, 40);
+	offset += QPoint(p_x, p_y);
+
+	p_painter.drawImage(QPoint(p_x, p_y),
+		m_game_controller_ref->get_gui_sprite(GUI_State::INVENTORY));
+
+	World& w = m_game_controller_ref->get_world();
+
+	for (int y = 0; y < 10; y++)
+	{
+		for (int x = 0; x < 10; x++)
+		{
+			ItemType temp = w.m_player.inventory.get_item(x, y).type;
+			p_painter.drawImage(QPoint(offset.x() + x * 36, offset.y() + y * 36)
+				, m_game_controller_ref->get_tile_sprite(TileType::G_XENORITE_ORE));
+		}
+	}
 }
 

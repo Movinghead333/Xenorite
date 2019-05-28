@@ -58,6 +58,11 @@ QImage& GameController::get_player_sprite(PlayerDirection dir) const
 	return *(player_sprites.find(dir))->second;
 }
 
+QImage & GameController::get_gui_sprite(GUI_State state) const
+{
+	return *(gui_sprites.find(state))->second;
+}
+
 World & GameController::get_world()
 {
 	return *current_world;
@@ -90,12 +95,31 @@ bool GameController::world_is_loaded() const
 
 void GameController::update_key_press(int key_code)
 {
+	// update keycodes for polling interaction
 	keys[key_code] = true;
+
+	// trigger eventbased interactions
+	if (key_code == Qt::Key_E)
+	{
+		if (gui_state != GUI_State::INVENTORY)
+		{
+			gui_state = GUI_State::INVENTORY;
+		}
+		else
+		{
+			gui_state = GUI_State::IN_GAME;
+		}
+	}
 }
 
 void GameController::update_key_release(int key_code)
 {
 	keys[key_code] = false;
+}
+
+GUI_State GameController::get_gui_state() const
+{
+	return gui_state;
 }
 
 void GameController::load_textures()
@@ -168,6 +192,27 @@ void GameController::load_textures()
 			pair.first,
 			std::make_shared<QImage>(
 				Texture::load_png(player_path + pair.second))
+			));
+	}
+
+
+	// player images path
+	std::string gui_path = base_path + "gui\\";
+
+	// map storing filepaths associated with enum objects
+	std::map<GUI_State, std::string> gui_res_map;
+
+	gui_res_map.insert(std::make_pair<GUI_State, std::string>(
+		GUI_State::INVENTORY, "inventory_background.png"
+		));
+
+	// initialize player sprites
+	for (const std::pair<GUI_State, std::string>& pair : gui_res_map)
+	{
+		gui_sprites.insert(std::pair<GUI_State, std::shared_ptr<QImage>>(
+			pair.first,
+			std::make_shared<QImage>(
+				Texture::load_png(gui_path + pair.second))
 			));
 	}
 }

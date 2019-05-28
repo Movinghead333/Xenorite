@@ -24,5 +24,7 @@ private:
 
 	void paintEvent(QPaintEvent *event) override;
 
+	void render_inventory(QPainter& p_painter, int p_x, int p_y);
+
 	
 };

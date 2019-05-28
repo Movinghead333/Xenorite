@@ -4,9 +4,14 @@
 #include <iostream>
 
 Inventory::Inventory()
-	:
-	items(std::vector<ItemStack>(100))
 {
+	items = new ItemStack[100];
+}
+
+Inventory::~Inventory()
+{
+	// not necessary because QT takes care
+	//delete[] items;
 }
 
 void Inventory::add_item(ItemStack p_stack)
@@ -33,6 +38,16 @@ void Inventory::add_item(ItemStack p_stack)
 			return;
 		}
 	}
+}
+
+ItemStack & Inventory::get_item(int x, int y)
+{
+	if (x < 0 || y < 0 || x >= ROWS || y >= COLS)
+	{
+		throw std::exception("out of inv array bounds");
+	}
+
+	return items[x + y * COLS];
 }
 
 std::string Inventory::to_string() const

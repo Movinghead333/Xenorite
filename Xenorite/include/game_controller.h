@@ -11,6 +11,7 @@
 #include "tile_type.h"
 #include "world.h"
 #include "player.h"
+#include "gui_state.h"
 
 class GameController
 {
@@ -24,6 +25,8 @@ public:
 	QImage& get_tile_sprite(TileType p_tile_type) const;
 
 	QImage& get_player_sprite(PlayerDirection dir) const;
+
+	QImage& get_gui_sprite(GUI_State state) const;
 
 	World& get_world();
 
@@ -42,9 +45,16 @@ public:
 	// called from render_Widget updating the keymap
 	void update_key_release(int key_code);
 
+	// return the current gui state
+	GUI_State get_gui_state() const;
+
+
 
 private:
 	// PRIVATE MEMBERS
+
+	// gui-state
+	GUI_State gui_state = GUI_State::IN_GAME;
 
 	// Key Map
 	std::map<int, bool> keys;
@@ -65,6 +75,9 @@ private:
 
 	// map storing all item graphics with there matching enum type as key
 	std::map<ItemType, std::shared_ptr<QImage>> item_sprites;
+
+	// gui sprite resources
+	std::map<GUI_State, std::shared_ptr<QImage>> gui_sprites;
 
 	// player sprite
 	std::map<PlayerDirection, std::shared_ptr<QImage>> player_sprites;

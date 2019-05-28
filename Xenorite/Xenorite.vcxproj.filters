@@ -142,5 +142,8 @@
     <ClInclude Include="include\inventory.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
+    <ClInclude Include="include\gui_state.h">
+      <Filter>Header Files\enums</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
